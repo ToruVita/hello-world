@@ -1,0 +1,51 @@
+<style>
+#source li{
+	border-bottom:dashed 1px blue;
+}
+#source .reserved{
+	color:gray;
+}
+#source [indent="1"]{
+	padding-left:2em;
+}
+#source [indent="2"]{
+	padding-left:4em;
+}
+
+</style>
+<h2 id="cmnt">sss</h2>
+<ol id="source" contenteditable>
+<li>
+<span class="reserved">class</span>
+</li>
+<li indent="1">asda</li>
+</ol>
+<script>
+window.onload=function(e){
+	var cmnt = document.getElementById("cmnt");
+	var src = localStorage.getItem("src");
+	var tgt = document.getElementById('source');
+	var li = document.createElement("li");
+	li.setAttribute("indent",2);
+	li.innerText = "sss";
+	tgt.appendChild(li);
+	cmnt.addEventListener("click", function(e){
+		cmnt.innerText = "0";
+	});
+	tgt.addEventListener("keydown", function(e){
+		var selection = window.getSelection();
+		var range = selection.getRangeAt(0);
+		var offset = range.startOffset;
+		var obj = range.startContainer;
+		cmnt.innerText = ""+offset + obj.parentNode.getAttribute('indent');
+		if(e.keyCode==9){
+			if(!e.shiftKey){
+			}else{
+			}
+			e.preventDefault();
+		}else{
+		}
+	});
+}
+</script>
+
